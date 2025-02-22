@@ -61,6 +61,9 @@
         }
       }
     },
+    "Continue with Safari" : {
+      "comment" : "Welcome page continue button"
+    },
     "Edge" : {
       "localizations" : {
         "de" : {
@@ -146,6 +149,9 @@
         }
       }
     },
+    "Finish" : {
+      "comment" : "Welcome page continue button"
+    },
     "Firefox" : {
       "localizations" : {
         "de" : {
@@ -155,6 +161,9 @@
           }
         }
       }
+    },
+    "Get Started" : {
+      "comment" : "Welcome page continue button"
     },
     "Hide Comments" : {
       "comment" : "Context menu item title\nToolbar button label",
