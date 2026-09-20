@@ -32,12 +32,12 @@ class KeychainTableController: NSViewController {
 
     private func dumpAction() -> [[CFString: Any]]? {
         print("will dump")
-        var copyResult: CFTypeRef? = nil
+        var copyResult: CFTypeRef?
         let err = SecItemCopyMatching([
             kSecClass: kSecClassKey,
             kSecMatchLimit: kSecMatchLimitAll,
             kSecAttrSynchronizable: kSecAttrSynchronizableAny,
-            kSecReturnAttributes: true,
+            kSecReturnAttributes: true
         ] as NSDictionary, &copyResult)
         let keysInfos: [[CFString: Any]]?
         switch err {
@@ -73,19 +73,12 @@ class KeychainTableController: NSViewController {
     }
 
     private func constructDeletionQuery(using data: [CFString: Any]) -> [CFString: Any]? {
-//        if let targetRef = data[String(kSecValueRef)] {
-//            return [
-//                kSecClass: kSecClassKey,
-//                kSecMatchItemList: [targetRef] as CFArray
-//            ]
-//        }
-
         if let cdat = data[kSecAttrCreationDate], let mdat = data[kSecAttrModificationDate] {
             return [
                 kSecClass: kSecClassKey,
                 kSecAttrSynchronizable: kSecAttrSynchronizableAny,
                 kSecAttrCreationDate: cdat,
-                kSecAttrModificationDate: mdat,
+                kSecAttrModificationDate: mdat
             ]
         }
 

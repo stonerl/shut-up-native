@@ -29,7 +29,7 @@ extension MainViewController {
         if lastHelperUiUpdate < helper.lastUpdated {
             lastHelperUiUpdate = helper.lastUpdated
 
-            NSAnimationContext.runAnimationGroup({ context in
+            NSAnimationContext.runAnimationGroup { context in
                 context.duration = 0.666
                 context.allowsImplicitAnimation = true
                 enableHelperGuide.alphaValue = helper.enabled ? 0.0 : 1.0
@@ -42,11 +42,11 @@ extension MainViewController {
                     frame = frame.offsetBy(dx: 0.0, dy: resizeDelta)
                     view.window!.setFrame(frame, display: true)
                 }
-            }, completionHandler: {
+            } completionHandler: {
                 if self.helper.enabled {
                     self.enableHelperGuide.isHidden = true
                 }
-            })
+            }
         }
     }
 
@@ -71,7 +71,7 @@ extension MainViewController {
             whitelistInfoLabel.isHidden = false
         }
 
-        NSAnimationContext.runAnimationGroup({ context in
+        NSAnimationContext.runAnimationGroup { context in
             context.duration = 0.2
             context.allowsImplicitAnimation = true
             context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
@@ -86,12 +86,12 @@ extension MainViewController {
 
             // Update the layout smoothly
             self.view.layoutSubtreeIfNeeded()
-        }, completionHandler: {
+        } completionHandler: {
             // Only hide the label after the animation completes when hiding
             if sender.state == .off {
                 self.whitelistInfoLabel.isHidden = true
             }
-        })
+        }
     }
 
     @IBAction func menuSettingUpdated(_ sender: NSButton) {

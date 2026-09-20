@@ -63,32 +63,8 @@ extension MainViewController {
             return
         }
 
-        // Split the clipboard contents using comma, semicolon, space, newline, tab, and pipe as delimiters
-        let delimiters = CharacterSet(charactersIn: ",; \n\t|")
-        let tokens = clipboardContents.components(separatedBy: delimiters)
-            .filter { !$0.isEmpty }
-
-        let domains = tokens.compactMap { token -> String? in
-            let cleanedToken = token.trimmingCharacters(in: .whitespacesAndNewlines)
-                .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-            guard let domain = Whitelist.parseDomain(from: cleanedToken) else { return nil }
-
-            // Additional regex check to ensure the domain is valid
-            guard let validDomainRegex = try? NSRegularExpression(
-                pattern: "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)$",
-                options: []
-            ) else {
-                return nil
-            }
-            let range = NSRange(location: 0, length: domain.utf16.count)
-            let matches = validDomainRegex.numberOfMatches(in: domain, options: [], range: range)
-            guard matches > 0 else { return nil }
-
-            return domain
-        }
-
-        let dedupedDomains = Array(Set(domains))
-        add(domains: dedupedDomains)
+        let domains = Whitelist.parseDomains(fromPasted: clipboardContents)
+        add(domains: domains)
 
         if startingCount == Whitelist.main.entries.count {
             NSSound.beep()
@@ -109,7 +85,9 @@ extension MainViewController {
 
         let index = Whitelist.firstIndex(of: domain, in: whitelistTableEntries)
         guard index == nil else {
-            if index != row { NSSound.beep() }
+            if index != row {
+                NSSound.beep()
+            }
             return nil
         }
 
@@ -128,7 +106,7 @@ extension MainViewController {
             }
 
             reloadTableData()
-            updateContentBlocker()
+            SFContentBlockerManager.reloadShutUpBlocker()
         }
     }
 
@@ -144,7 +122,7 @@ extension MainViewController {
             }
 
             reloadTableData()
-            updateContentBlocker()
+            SFContentBlockerManager.reloadShutUpBlocker()
         }
     }
 
@@ -158,11 +136,13 @@ extension MainViewController {
         undoManager?.setActionName("Edit Domain")
 
         reloadTableData()
-        updateContentBlocker()
+        SFContentBlockerManager.reloadShutUpBlocker()
     }
 
     func undoString(from domains: [String]) -> String {
-        if domains.count == 1 { return domains[0] }
+        if domains.count == 1 {
+            return domains[0]
+        }
         return String(localized: "\(domains.count) Domains")
     }
 
@@ -184,21 +164,12 @@ extension MainViewController {
         }
         whitelistView.endUpdates()
     }
-
-    func updateContentBlocker() {
-        SFContentBlockerManager.reloadContentBlocker(withIdentifier: Info.blockerBundleId) { error in
-            guard error == nil else {
-                showError(BrowserError.providingBlockRules)
-                return
-            }
-        }
-    }
 }
 
 // MARK: NSTableViewDataSource
 
 extension MainViewController: NSTableViewDataSource {
-    // Return cell views
+    /// Return cell views
     func tableView(_: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
         let cellId = NSUserInterfaceItemIdentifier("WhitelistCell")
         let cell = whitelistView.makeView(withIdentifier: cellId, owner: nil) as? NSTableCellView
@@ -209,7 +180,7 @@ extension MainViewController: NSTableViewDataSource {
         return cell
     }
 
-    // Return number of available rows
+    /// Return number of available rows
     func numberOfRows(in _: NSTableView) -> Int {
         whitelistTableEntries.count
     }
@@ -232,7 +203,7 @@ extension MainViewController: NSTableViewDelegate {
         textField.becomeFirstResponder()
     }
 
-    // Swipe actions for the table view
+    /// Swipe actions for the table view
     func tableView(_: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         if edge == .trailing {
             let deleteAction = NSTableViewRowAction(style: .destructive, title: String(localized: "Delete"), handler: { _, row in

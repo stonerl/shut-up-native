@@ -12,9 +12,7 @@ protocol ErrorRecoveryDelegate: AnyObject {
     func attemptRecovery(from error: Error, with option: RecoveryOption) -> Bool
 }
 
-struct DelegatingRecoverableError<Delegate, Error>: RecoverableError
-    where Delegate: ErrorRecoveryDelegate, Error: Swift.Error
-{
+struct DelegatingRecoverableError<Delegate: ErrorRecoveryDelegate, Error: Swift.Error>: RecoverableError {
     let error: Error
     weak var delegate: Delegate?
 
@@ -30,7 +28,9 @@ struct DelegatingRecoverableError<Delegate, Error>: RecoverableError
         ) ?? [.okay]
     }
 
-    var recoveryOptions: [String] { recoveryActions.map { "\($0)" } }
+    var recoveryOptions: [String] {
+        recoveryActions.map { "\($0)" }
+    }
 
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         let action = recoveryActions[recoveryOptionIndex]

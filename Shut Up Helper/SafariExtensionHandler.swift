@@ -98,7 +98,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                 page?.reload()
             }
 
-            // TODO: Find a better way to handle this.
+            // NOTE: The temporary-whitelist revert below needs a delay; Safari
+            // exposes no event for "page finished re-rendering after reload".
             let shouldRemove = (
                 !Preferences.main.automaticWhitelisting ||
                     (props?.usesPrivateBrowsing ?? false)

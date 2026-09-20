@@ -30,11 +30,10 @@ final class Crypto {
 
     static var main = Crypto()
     let lock = LockFile(url: Info.containerUrl.appendingPathComponent("keychain.lock"))
-    let queue = DispatchQueue(label: "\(Info.bundleId).keychain")
 
     private let constants: [String: Any] = [
         // swiftformat:disable consecutiveSpaces; swiftlint:disable colon
-        "accessGroup":  Info.groupId,
+        "accessGroup":  Info.keychainGroupId,
         "type":         kSecAttrKeyTypeRSA,
         "bits":         3072,
         "label":        "Shut Up Encryption Key"
@@ -51,6 +50,8 @@ final class Crypto {
         guard !setupStarted else { return }
         defer { self.lock.unlock() }
         setupStarted = true
+
+        logger.info("Using keychain access group: '\(Info.keychainGroupId, privacy: .public)'")
 
         if !requiredKeysPresent {
             lock.claim()
@@ -72,23 +73,31 @@ final class Crypto {
     }
 
     func clear() throws {
-        // Invalidate keys by deleting them
-        let query: [CFString: Any] = [
-            kSecUseDataProtectionKeychain: true,
-            kSecClass: kSecClassKey,
-            kSecMatchLimit: kSecMatchLimitAll
+        // Invalidate keys by deleting them, scoped by application tag so
+        // only Shut Up's key pair is ever touched.
+        var base: [CFString: Any] = [
+            kSecClass: kSecClassKey
         ]
+        #if os(macOS)
+            // Delete rejects this flag on iOS (errSecParam); it's implicit there.
+            base[kSecUseDataProtectionKeychain] = true
+        #endif
 
-        let result = SecItemDelete(query as CFDictionary)
-        guard [errSecSuccess, errSecItemNotFound].contains(result) else {
-            logger.error("Failed to remove key(s). Error: \(String(describing: SecCopyErrorMessageString(result, nil)))")
-            throw CryptoError.removingInvalidKeys
-        }
-        if result == errSecSuccess {
-            logger.info("Removed key(s) successfully.")
-        }
-        if result == errSecItemNotFound {
-            logger.info("No key(s) found to remove.")
+        for keySuffix in ["private", "public"] {
+            var query = base
+            query[kSecAttrApplicationTag] = (Info.keychainGroupId + "." + keySuffix).data(using: .utf8)!
+
+            let result = SecItemDelete(query as CFDictionary)
+            guard [errSecSuccess, errSecItemNotFound].contains(result) else {
+                logger.error("Failed to remove key(s). Error: \(String(describing: SecCopyErrorMessageString(result, nil)))")
+                throw CryptoError.removingInvalidKeys
+            }
+            if result == errSecSuccess {
+                logger.info("Removed key(s) successfully.")
+            }
+            if result == errSecItemNotFound {
+                logger.info("No key(s) found to remove.")
+            }
         }
     }
 
@@ -138,7 +147,7 @@ final class Crypto {
             kSecUseDataProtectionKeychain: true,
             kSecClass: kSecClassKey,
             kSecMatchLimit: kSecMatchLimitOne,
-            kSecAttrAccessGroup: Info.groupId,
+            kSecAttrAccessGroup: Info.keychainGroupId,
             kSecAttrKeyClass: keyClassConstant,
             kSecReturnRef: true
         ]

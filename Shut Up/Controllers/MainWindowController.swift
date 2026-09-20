@@ -10,7 +10,6 @@ import Cocoa
 
 class MainWindowController: NSWindowController {
     @IBOutlet var mainWindow: NSWindow!
-    @IBOutlet var toolbar: NSToolbar!
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -19,16 +18,16 @@ class MainWindowController: NSWindowController {
         windowFrameAutosaveName = "MainWindow"
 
         mainWindow.isMovableByWindowBackground = true
+        mainWindow.standardWindowButton(.zoomButton)?.isHidden = true
     }
 }
 
 // MARK: NSWindowDelegate
 
 extension MainWindowController: NSWindowDelegate {
-    // Callback for when a sheet is being presented on the main window
+    /// Callback for when a sheet is being presented on the main window
     func window(_ window: NSWindow, willPositionSheet _: NSWindow, using rect: NSRect) -> NSRect {
         // Offset input rectangle so it sits on the top of the window
-        let destRect = rect.offsetBy(dx: 0.0, dy: window.frame.height - rect.origin.y)
-        return destRect
+        rect.offsetBy(dx: 0.0, dy: window.frame.height - rect.origin.y)
     }
 }

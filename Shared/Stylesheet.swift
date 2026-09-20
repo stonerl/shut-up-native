@@ -52,7 +52,7 @@ class Stylesheet {
         bundleOrigin: Bundle.main.url(forResource: "shutup", withExtension: "css")!
     )
 
-    var updateIsDue: Bool {
+    private var updateIsDue: Bool {
         let twoDays: Double = 60 * 60 * 24 * 2
         let deadline = Preferences.main.lastStylesheetUpdate.addingTimeInterval(twoDays)
 
@@ -70,8 +70,22 @@ class Stylesheet {
     }
 
     func update(force: Bool = false, completionHandler: ((Error?) -> Void)?) {
-        guard waitingForResponse == false else { return }
-        guard updateIsDue || force else { return }
+        // Callers that pass a completion handler expect exactly one
+        // callback per update() call – even when we bail out early. The
+        // BG task scheduler, among others, relies on this.
+        let bailOut: (Error?) -> Void = { error in
+            guard let completionHandler else { return }
+            DispatchQueue.main.async { completionHandler(error) }
+        }
+
+        guard waitingForResponse == false else {
+            bailOut(nil)
+            return
+        }
+        guard updateIsDue || force else {
+            bailOut(nil)
+            return
+        }
 
         waitingForResponse = true
         currentRefreshMethod = force ? "manual" : "automatic"
@@ -236,7 +250,77 @@ class Stylesheet {
         return strippedCSS
     }
 
-    func reset() { file.reset() }
+    func reset() {
+        file.reset()
+    }
+}
+
+// MARK: - Update-status descriptions + reload helper
+
+extension Stylesheet {
+    struct UpdateDescription {
+        let summary: String
+        let tooltip: String
+    }
+
+    /// True within the cooldown window after an update finishes.
+    static func updateIsRecent(_ timestamp: Date) -> Bool {
+        timestamp.timeIntervalSinceNow > -15
+    }
+
+    /// Human-readable "last updated" strings, shared by both UIs.
+    static func describe(update timestamp: Date, method: String) -> UpdateDescription {
+        let cutoffDate = Date(timeIntervalSinceNow: -(60 * 60 * 24 * 7))
+        let relativeFormatter = RelativeDateTimeFormatter()
+        let absoluteFormatter = DateFormatter()
+
+        relativeFormatter.unitsStyle = .full
+        absoluteFormatter.dateStyle = .medium
+        absoluteFormatter.timeStyle = .medium
+
+        let summary: String
+        if timestamp == Date(timeIntervalSince1970: 0) {
+            summary = String(localized: "--",
+                             comment: "String for the 'Last CSS update' label")
+        } else if updateIsRecent(timestamp) {
+            summary = String(localized: "Updated just now",
+                             comment: "String for the 'Last CSS update' label")
+        } else if timestamp < cutoffDate {
+            summary = String(localized: "Updated over 1 week ago",
+                             comment: "String for the 'Last CSS update' label")
+        } else {
+            let relativeStr = relativeFormatter.localizedString(for: timestamp, relativeTo: Date())
+            summary = String(localized: "Updated \(relativeStr)",
+                             comment: "String for the 'Last CSS update' label, argument is the relative time")
+        }
+
+        let tooltip: String
+        if timestamp == Date(timeIntervalSince1970: 0) {
+            tooltip = String(localized: "Stylesheet hasn’t been updated.",
+                             comment: "Tooltip for the 'Last CSS update' label")
+        } else {
+            let updatedHow = method == "automatic"
+                ? String(localized: "Automatically", comment: "First argument for the 'Last CSS update' label")
+                : String(localized: "Manually", comment: "First argument for the 'Last CSS update' label")
+            let absoluteStr = absoluteFormatter.string(from: timestamp)
+            tooltip = String(localized: "\(updatedHow) updated on \(absoluteStr).",
+                             comment: "Tooltip for the 'Last CSS update' label, first argument is 'Automatically' or 'Manually")
+        }
+
+        return UpdateDescription(summary: summary, tooltip: tooltip)
+    }
+}
+
+extension SFContentBlockerManager {
+    /// Reloads Shut Up's content blocker on any platform, surfacing
+    /// failures through the shared error pipeline.
+    static func reloadShutUpBlocker() {
+        reloadContentBlocker(withIdentifier: Info.blockerBundleId) { error in
+            guard let error else { return }
+            logger.error("Content blocker reload error: \(String(describing: error))")
+            showError(BrowserError.providingBlockRules)
+        }
+    }
 }
 
 // MARK: String/regex convenience extensions

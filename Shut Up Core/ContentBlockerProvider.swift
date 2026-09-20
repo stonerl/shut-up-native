@@ -16,7 +16,7 @@ final class ContentBlockerProvider {
         let whitelist = Whitelist.main.entries
         let wildcardDomains = whitelist.map { "*\($0)" }
 
-        let rules = cssRules.map { cssRule -> [ContentBlockerRule] in
+        return cssRules.map { cssRule -> [ContentBlockerRule] in
             cssRule.selectors.map { selector -> ContentBlockerRule in
                 let trigger = ContentBlockerRuleTrigger(
                     unlessDomain: wildcardDomains
@@ -34,7 +34,5 @@ final class ContentBlockerProvider {
         // the selector to not display. ignore-previous-rules
         // isn't supported with a selector AFAICT
         .filter { $0.action.type == "css-display-none" }
-
-        return rules
     }
 }

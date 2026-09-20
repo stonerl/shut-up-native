@@ -40,7 +40,7 @@ struct ExtensionLink: Link {
         destination = URL(string: dest)
     }
 
-    // Try to open the link with its matching browser.
+    /// Try to open the link with its matching browser.
     func open() {
         let workspace = NSWorkspace.shared
         let bundleId: String? = switch preferredBrowser {
@@ -118,10 +118,6 @@ enum Links {
             id: "shut_up_opera",
             dest: "https://github.com/panicsteve/shutup-css#installation-on-opera",
             browser: .opera
-        ),
-        BasicLink(
-            id: "shut_up_ios",
-            dest: "https://apps.apple.com/app/id1015043880"
         ),
         BasicLink(
             id: "release_notes",

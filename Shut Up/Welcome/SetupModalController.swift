@@ -9,7 +9,9 @@
 import Cocoa
 
 class SetupModalController: NSViewController {
-    override var acceptsFirstResponder: Bool { true }
+    override var acceptsFirstResponder: Bool {
+        true
+    }
 
     override func viewWillAppear() {
         super.viewWillAppear()

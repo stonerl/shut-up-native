@@ -9,5 +9,7 @@
 import Cocoa
 
 class LargeBubbleImageView: NSImageView {
-    override var mouseDownCanMoveWindow: Bool { true }
+    override var mouseDownCanMoveWindow: Bool {
+        true
+    }
 }

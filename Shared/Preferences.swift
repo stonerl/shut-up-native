@@ -62,7 +62,9 @@ final class Preferences {
         get { _delegate }
         set {
             _delegate = newValue
-            if setupRun { _delegate?.prefsDidUpdate() }
+            if setupRun {
+                _delegate?.prefsDidUpdate()
+            }
         }
     }
 

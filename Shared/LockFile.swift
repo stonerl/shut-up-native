@@ -11,12 +11,10 @@ import Foundation
 final class LockFile {
     private var url: URL
     private var claimedDate: Date?
-    private let queue: DispatchQueue!
-    var expiry = 120 // seconds
+    let expiry = 120 // seconds
 
     init(url: URL) {
         self.url = url
-        queue = DispatchQueue(label: "\(Info.bundleId).\(url.lastPathComponent)")
     }
 
     func attempt() -> Bool {
@@ -25,7 +23,9 @@ final class LockFile {
             contents: Data(),
             attributes: [.immutable: 1]
         )
-        if claimed { claimedDate = lockDate }
+        if claimed {
+            claimedDate = lockDate
+        }
         return claimed
     }
 
@@ -45,7 +45,10 @@ final class LockFile {
         return attributes?[.creationDate] as? Date
     }
 
-    private var claimedByUs: Bool { lockDate == claimedDate && lockDate != nil }
+    private var claimedByUs: Bool {
+        lockDate == claimedDate && lockDate != nil
+    }
+
     private var timerActive = false
     private var lockExpired: Bool {
         let negativeExpiry = Double(expiry) * -1
@@ -58,22 +61,22 @@ final class LockFile {
         guard !timerActive else { return }
         timerActive = true
 
-        var pollingTask: DispatchWorkItem
-        pollingTask = DispatchWorkItem {
-            while true {
-                let lockClaimed = self.attempt()
-                if lockClaimed {
-                    break
-                } else {
-                    if self.lockExpired {
-                        self.smash()
-                    }
-
-                    usleep(1000 * 1000 / 2)
+        // Polls on the calling thread; blocks until the lock is claimed or expires.
+        while true {
+            let lockClaimed = attempt()
+            if lockClaimed {
+                break
+            } else {
+                if lockExpired {
+                    smash()
                 }
+
+                usleep(1000 * 1000 / 2)
             }
         }
 
-        queue.sync(execute: pollingTask)
+        // The guard above only prevents nested/reentrant claims. Clear the
+        // flag so independent claims later in the process life can proceed.
+        timerActive = false
     }
 }

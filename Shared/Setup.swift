@@ -6,8 +6,11 @@
 //  See LICENSE.md for license information.
 //
 
-import Cocoa
+import Foundation
 import OSLog
+#if os(macOS)
+    import Cocoa
+#endif
 
 private let logger = Logger(subsystem: Info.containingBundleId, category: "Setup")
 
@@ -34,9 +37,11 @@ final class Setup {
                 showError(FileError.checkingFreeSpace)
             }
 
-            if resetKeyHeld {
-                confirmReset()
-            }
+            #if os(macOS)
+                if resetKeyHeld {
+                    confirmReset()
+                }
+            #endif
         }
 
         Preferences.main.setDefaults()
@@ -56,33 +61,35 @@ final class Setup {
         bootstrap {}
     }
 
-    func confirmReset() {
-        DispatchQueue.main.async {
-            guard let mainWindow = NSApp.mainWindow else {
-                // Retry after a short delay if mainWindow is not yet available
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    self.confirmReset()
+    #if os(macOS)
+        func confirmReset() {
+            DispatchQueue.main.async {
+                guard let mainWindow = NSApp.mainWindow else {
+                    // Retry after a short delay if mainWindow is not yet available
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        self.confirmReset()
+                    }
+                    return
                 }
-                return
-            }
 
-            let alert = NSAlert()
-            alert.messageText = String(localized: "Reset Shut Up?")
-            alert.informativeText = String(localized: "Resetting Shut Up will delete your settings and allowlist. This will restore its original configuration. You cannot undo this action.")
-            let quitButton = alert.addButton(withTitle: String(localized: "Quit"))
-            quitButton.keyEquivalent = ""
-            alert.addButton(withTitle: String(localized: "Reset Shut Up"))
+                let alert = NSAlert()
+                alert.messageText = String(localized: "Reset Shut Up?")
+                alert.informativeText = String(localized: "Resetting Shut Up will delete your settings and allowlist. This will restore its original configuration. You cannot undo this action.")
+                let quitButton = alert.addButton(withTitle: String(localized: "Quit"))
+                quitButton.keyEquivalent = ""
+                alert.addButton(withTitle: String(localized: "Reset Shut Up"))
 
-            // Present the alert as a modal sheet attached to the main window.
-            alert.beginSheetModal(for: mainWindow) { response in
-                if response == .alertFirstButtonReturn {
-                    NSApp.terminate(nil)
-                } else {
-                    self.reset()
+                // Present the alert as a modal sheet attached to the main window.
+                alert.beginSheetModal(for: mainWindow) { response in
+                    if response == .alertFirstButtonReturn {
+                        NSApp.terminate(nil)
+                    } else {
+                        self.reset()
+                    }
                 }
             }
         }
-    }
+    #endif
 
     func reset() {
         try? Crypto.main.clear()
@@ -90,22 +97,26 @@ final class Setup {
         Whitelist.main.reset()
         Stylesheet.main.reset()
 
-        // Relaunch the app and stop this instance
-        let resourceUrl = Bundle.main.resourceURL
-        let appBundleUrl = resourceUrl?.deletingLastPathComponent().deletingLastPathComponent()
+        #if os(macOS)
+            // Relaunch the app and stop this instance
+            let resourceUrl = Bundle.main.resourceURL
+            let appBundleUrl = resourceUrl?.deletingLastPathComponent().deletingLastPathComponent()
 
-        let config = NSWorkspace.OpenConfiguration()
-        config.activates = true
-        config.createsNewApplicationInstance = true
-        NSWorkspace.shared.openApplication(
-            at: appBundleUrl!,
-            configuration: config,
-            completionHandler: nil
-        )
+            let config = NSWorkspace.OpenConfiguration()
+            config.activates = true
+            config.createsNewApplicationInstance = true
+            NSWorkspace.shared.openApplication(
+                at: appBundleUrl!,
+                configuration: config,
+                completionHandler: nil
+            )
 
-        DispatchQueue.main.async {
-            NSApp.terminate(self)
-        }
+            DispatchQueue.main.async {
+                NSApp.terminate(self)
+            }
+        #endif
+        // iOS resets in place; there is no relaunch API. UI callers
+        // observe the reset and refresh their state.
     }
 
     func queryAvailableSpace() -> Int64 {

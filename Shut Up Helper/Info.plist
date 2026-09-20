@@ -71,6 +71,8 @@
 shutup.css © 2010 - 2025 Steven Frank and contributors</string>
 	<key>NSHumanReadableDescription</key>
 	<string>Enables Shut Up’s toolbar button and context menu item. Recommended for full functionality.</string>
+	<key>ShutUpContainingBundleId</key>
+	<string>$(CONTAINING_APP_BUNDLE_ID)</string>
 	<key>TeamIdentifierPrefix</key>
 	<string>$(TeamIdentifierPrefix)</string>
 </dict>

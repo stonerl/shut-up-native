@@ -46,7 +46,7 @@ class Whitelist {
     }
 
     private var file: EncryptedFile!
-    var loadFinished = false
+    private var loadFinished = false
 
     static func parseDomain(from item: String) -> String? {
         guard item.count > 0 else { return nil }
@@ -108,9 +108,43 @@ class Whitelist {
         return components.joined(separator: ".").lowercased()
     }
 
-    // Subdomain-sensitive matching
-    static func domainDoesMatch(domain: String, in collection: [String]) -> Bool {
+    /// Subdomain-sensitive matching
+    private static func domainDoesMatch(domain: String, in collection: [String]) -> Bool {
         firstIndex(of: domain, in: collection) != nil
+    }
+
+    /// Tokenizes pasted or multi-entry text into deduplicated, valid domains
+    /// using the same delimiter and trimming rules on every platform.
+    static func parseDomains(fromPasted text: String) -> [String] {
+        // Split using comma, semicolon, space, newline, tab, and pipe as delimiters
+        let delimiters = CharacterSet(charactersIn: ",; \n\t|")
+        let tokens = text.components(separatedBy: delimiters).filter { !$0.isEmpty }
+
+        let domains = tokens.compactMap { token -> String? in
+            let cleanedToken = token.trimmingCharacters(in: .whitespacesAndNewlines)
+                .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            guard let domain = parseDomain(from: cleanedToken) else { return nil }
+
+            // Additional regex check to ensure the domain is valid
+            guard isValidDomain(domain) else { return nil }
+
+            return domain
+        }
+
+        return Array(Set(domains))
+    }
+
+    /// Additional regex check applied to parsed domains.
+    static func isValidDomain(_ domain: String) -> Bool {
+        guard let validDomainRegex = try? NSRegularExpression(
+            pattern: "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)$",
+            options: []
+        ) else {
+            return false
+        }
+
+        let range = NSRange(location: 0, length: domain.utf16.count)
+        return validDomainRegex.numberOfMatches(in: domain, options: [], range: range) > 0
     }
 
     static func firstIndex(of domain: String, in collection: [String]) -> Int? {
@@ -215,7 +249,9 @@ class Whitelist {
         Whitelist.domainDoesMatch(domain: domain, in: entries)
     }
 
-    func reset() { file.reset() }
+    func reset() {
+        file.reset()
+    }
 }
 
 protocol WhitelistDataDelegate: AnyObject {

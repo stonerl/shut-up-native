@@ -13,7 +13,9 @@ class MobileAppViewController: NSViewController {
     static let target = "https://apps.apple.com/app/id1015043880"
     static let targetUrl = URL(string: target)!
     var sharingPicker: NSSharingServicePicker!
-    override var acceptsFirstResponder: Bool { true }
+    override var acceptsFirstResponder: Bool {
+        true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

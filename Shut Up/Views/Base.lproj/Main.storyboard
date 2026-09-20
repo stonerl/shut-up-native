@@ -233,17 +233,12 @@ CA
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="700" height="400"/>
                         <value key="maxSize" type="size" width="700" height="600"/>
-                        <toolbar key="toolbar" implicitIdentifier="7103FDCE-1D01-4B52-B45F-7DB13DFD69C5" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="regular" id="s3P-rj-cZx">
-                            <allowedToolbarItems/>
-                            <defaultToolbarItems/>
-                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
                     <connections>
                         <outlet property="mainWindow" destination="IQv-IB-iLA" id="rsi-Wg-kAD"/>
-                        <outlet property="toolbar" destination="s3P-rj-cZx" id="QQb-ev-vd1"/>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
                 </windowController>
@@ -483,11 +478,6 @@ iOS 12 or later.</string>
                                                     <constraint firstAttribute="trailing" secondItem="KGM-hn-NZE" secondAttribute="trailing" id="yDG-fj-DuJ"/>
                                                 </constraints>
                                             </customView>
-                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPl-ys-ORU">
-                                                <rect key="frame" x="318" y="37" width="48" height="48"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="m3h-eS-2sm"/>
-                                            </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="yhe-fV-vie" firstAttribute="leading" secondItem="1ll-1A-xkh" secondAttribute="trailing" constant="15" id="0OJ-YW-09u"/>
@@ -822,16 +812,6 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crm-BD-TmM">
-                                <rect key="frame" x="35" y="311" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="k0S-MZ-Hsr"/>
-                            </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHG-XM-M7f">
-                                <rect key="frame" x="25" y="294" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="jdm-T0-Gf4"/>
-                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="85U-97-Bxt" secondAttribute="trailing" constant="25" id="JMZ-yj-x8m"/>
@@ -1253,7 +1233,6 @@ DQ
                         <outlet property="updateStylesheetButton" destination="0m7-S0-7eM" id="EiJ-5b-Xz3"/>
                         <outlet property="updatingIndicator" destination="VY0-Te-ENx" id="Da6-Oy-opE"/>
                         <outlet property="updatingSpinner" destination="kmX-0T-y2Z" id="RxV-cB-HSG"/>
-                        <outlet property="whitelistAddField" destination="ZjL-Rx-1qN" id="TXc-FS-ofi"/>
                         <outlet property="whitelistInfoLabel" destination="2nG-k5-jvw" id="3Lq-2j-8q8"/>
                         <outlet property="whitelistScrollView" destination="1sw-Rm-hiV" id="W3p-0U-0yw"/>
                         <outlet property="whitelistView" destination="Z7W-xZ-9s9" id="cxd-BP-LdX"/>

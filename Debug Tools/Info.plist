@@ -32,6 +32,8 @@
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
+	<key>ShutUpContainingBundleId</key>
+	<string>$(CONTAINING_APP_BUNDLE_ID)</string>
 	<key>TeamIdentifierPrefix</key>
 	<string>$(TeamIdentifierPrefix)</string>
 </dict>

@@ -12,27 +12,23 @@ final class EncryptedFile {
     let fsLocation: URL
     let bundleOrigin: URL
 
-    var mostRecentlySeenModification: Date?
+    private var mostRecentlySeenModification: Date?
     var lastModified: Date? {
         let attributes = try? FileManager.default.attributesOfItem(atPath: fsLocation.path)
         return attributes?[.modificationDate] as? Date
     }
 
-    var cache: Data?
+    private var cache: Data?
     var externalUpdateOccurred: ((Data) -> Void)?
-    var initCallback: (() -> Void)?
 
     var lock: LockFile!
-    let queue: DispatchQueue!
 
     init(fsLocation: URL, bundleOrigin: URL) {
         self.fsLocation = fsLocation
         self.bundleOrigin = bundleOrigin
 
         lock = LockFile(url: fsLocation.appendingPathExtension("lock"))
-        queue = DispatchQueue(label: "\(Info.bundleId).\(fsLocation.lastPathComponent)")
-
-        queue.sync { _ = self.read() }
+        _ = read()
     }
 
     func keysVerifiedPresent() -> Bool {
@@ -40,7 +36,9 @@ final class EncryptedFile {
     }
 
     func read(force: Bool = false) -> Data? {
-        if force { cache = nil }
+        if force {
+            cache = nil
+        }
 
         if lastModified != mostRecentlySeenModification || cache == nil {
             defer { self.lock.unlock() }
@@ -57,7 +55,9 @@ final class EncryptedFile {
                         let encryptedData = try Data(contentsOf: fsLocation)
                         fileData = try Crypto.main.transform(with: .decryption, data: encryptedData)
                     } catch {
-                        if error is CryptoError { throw error }
+                        if error is CryptoError {
+                            throw error
+                        }
 
                         // Reading failed for some reason. Try to restore from the bundle.
                         // If this fails, that failure will be thrown to the caller.
@@ -75,12 +75,9 @@ final class EncryptedFile {
             }
 
             DispatchQueue.main.async {
-                self.initCallback?()
                 if modificationOccurred {
                     self.externalUpdateOccurred?(self.cache!)
                 }
-
-                self.initCallback = nil
             }
         }
 
@@ -100,7 +97,7 @@ final class EncryptedFile {
                 lock.claim()
 
                 let encryptedData = try Crypto.main.transform(with: .encryption, data: contents)
-                try encryptedData.write(to: fsLocation)
+                try encryptedData.write(to: fsLocation, options: .atomic)
                 mostRecentlySeenModification = lastModified
 
                 cache = contents

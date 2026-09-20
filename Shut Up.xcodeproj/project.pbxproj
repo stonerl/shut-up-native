@@ -86,6 +86,44 @@
 		E24E2E0C2D6C9369006BADA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E24E2E0B2D6C9369006BADA2 /* InfoPlist.xcstrings */; };
 		E24E2E0E2D6C9389006BADA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E24E2E0D2D6C9389006BADA2 /* InfoPlist.xcstrings */; };
 		E24E2E122D6C9924006BADA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E24E2E112D6C9924006BADA2 /* InfoPlist.xcstrings */; };
+		E2A0C2E0D6803C800F3E0001 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C4DD6234A2D040034054C /* Info.swift */; };
+		E2A0C2E0D6803C800F3E0002 /* ContentBlockerRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E58207231DB82E00910010 /* ContentBlockerRequestHandler.swift */; };
+		E2A0C2E0D6803C800F3E0003 /* ContentBlockerRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11161DC624A26EDA00F12B10 /* ContentBlockerRule.swift */; };
+		E2A0C2E0D6803C800F3E0004 /* ContentBlockerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11161DC824A271DA00F12B10 /* ContentBlockerProvider.swift */; };
+		E2A0C2E0D6803C800F3E0005 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF35702479F12000D5EFD2 /* Preferences.swift */; };
+		E2A0C2E0D6803C800F3E0006 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A34D552354E9D70008F0CA /* Crypto.swift */; };
+		E2A0C2E0D6803C800F3E0007 /* EncryptedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E4B0B2246D0EF3007340A4 /* EncryptedFile.swift */; };
+		E2A0C2E0D6803C800F3E0008 /* Whitelist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110FDE3F2499DB5E00AC5651 /* Whitelist.swift */; };
+		E2A0C2E0D6803C800F3E0009 /* LockFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F903B82470F96D0012051C /* LockFile.swift */; };
+		E2A0C2E0D6803C800F3E000A /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C4DD2234A2ADD0034054C /* Setup.swift */; };
+		E2A0C2E0D6803C800F3E000B /* MessagingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110FEE0D2476D07100AA0B83 /* MessagingError.swift */; };
+		E2A0C2E0D6803C800F3E000C /* Stylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119742CE2478DC94000AFA2D /* Stylesheet.swift */; };
+		E2A0C3E0D6803C800F3E0001 /* shutup.css in Resources */ = {isa = PBXBuildFile; fileRef = 111C4DDB234A46C10034054C /* shutup.css */; };
+		E2A0C3E0D6803C800F3E0002 /* domain-whitelist.json in Resources */ = {isa = PBXBuildFile; fileRef = 111C4DDF234A47180034054C /* domain-whitelist.json */; };
+		E2A0C3E0D6803C800F3E0003 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E216EE1C2D68044800F3EA78 /* Localizable.xcstrings */; };
+		E2A0C3E0D6803C800F3E0004 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E24E2E0D2D6C9389006BADA2 /* InfoPlist.xcstrings */; };
+		E2A0C7E0D6803C800F3E0011 /* Shut Up Core iOS.appex in Embed iOS Extensions */ = {isa = PBXBuildFile; fileRef = E2A0C1E0D6803C800F3E0001 /* Shut Up Core iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E2A0C8E0D6803C800F3E0001 /* ShutUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E0016 /* ShutUpApp.swift */; };
+		E2A0C8E0D6803C800F3E0002 /* AppStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E0017 /* AppStateModel.swift */; };
+		E2A0C8E0D6803C800F3E0003 /* WhitelistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E0018 /* WhitelistModel.swift */; };
+		E2A0C8E0D6803C800F3E0004 /* ErrorBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E0019 /* ErrorBox.swift */; };
+		E2A0C8E0D6803C800F3E0005 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E001A /* RootView.swift */; };
+		E2A0C8E0D6803C800F3E0007 /* WhitelistScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E001C /* WhitelistScreen.swift */; };
+		E2A0C8E0D6803C800F3E0008 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E001D /* AboutScreen.swift */; };
+		E2A0C8E0D6803C800F3E0009 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C4DD6234A2D040034054C /* Info.swift */; };
+		E2A0C8E0D6803C800F3E000A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF35702479F12000D5EFD2 /* Preferences.swift */; };
+		E2A0C8E0D6803C800F3E000B /* Stylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119742CE2478DC94000AFA2D /* Stylesheet.swift */; };
+		E2A0C8E0D6803C800F3E000C /* Whitelist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110FDE3F2499DB5E00AC5651 /* Whitelist.swift */; };
+		E2A0C8E0D6803C800F3E000D /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A34D552354E9D70008F0CA /* Crypto.swift */; };
+		E2A0C8E0D6803C800F3E000E /* EncryptedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E4B0B2246D0EF3007340A4 /* EncryptedFile.swift */; };
+		E2A0C8E0D6803C800F3E000F /* MessagingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110FEE0D2476D07100AA0B83 /* MessagingError.swift */; };
+		E2A0C8E0D6803C800F3E0010 /* LockFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F903B82470F96D0012051C /* LockFile.swift */; };
+		E2A0C8E0D6803C800F3E0011 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C4DD2234A2ADD0034054C /* Setup.swift */; };
+		E2A0C9E0D6803C800F3E0001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E000E /* Assets.xcassets */; };
+		E2A0C9E0D6803C800F3E0002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E216EE1C2D68044800F3EA78 /* Localizable.xcstrings */; };
+		E2A0CAE0D6803C800F3E0001 /* shutup.css in Resources */ = {isa = PBXBuildFile; fileRef = 111C4DDB234A46C10034054C /* shutup.css */; };
+		E2A0CAE0D6803C800F3E0002 /* domain-whitelist.json in Resources */ = {isa = PBXBuildFile; fileRef = 111C4DDF234A47180034054C /* domain-whitelist.json */; };
+		E2A0C8E0D6803C800F3E0012 /* BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0C7E0D6803C800F3E001E /* BackgroundRefresh.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +141,13 @@
 			remoteGlobalIDString = 11E58201231DB82E00910010;
 			remoteInfo = blocker;
 		};
+		E2A0C7E0D6803C800F3E0012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11E581C5231DB6FC00910010 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2A0C1E0D6803C800F3E0002;
+			remoteInfo = "Shut Up Core iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +161,17 @@
 				11E5820D231DB82E00910010 /* Shut Up Core.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2A0C7E0D6803C800F3E000F /* Embed iOS Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E2A0C7E0D6803C800F3E0011 /* Shut Up Core iOS.appex in Embed iOS Extensions */,
+			);
+			name = "Embed iOS Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -182,6 +238,21 @@
 		E24E2E0B2D6C9369006BADA2 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		E24E2E0D2D6C9389006BADA2 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		E24E2E112D6C9924006BADA2 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		E2A0C1E0D6803C800F3E0001 /* Shut Up Core iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Shut Up Core iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2A0C1E0D6803C800F3E000A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2A0C1E0D6803C800F3E000B /* Shut Up Core iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Shut Up Core iOS.entitlements"; sourceTree = "<group>"; };
+		E2A0C7E0D6803C800F3E0001 /* Shut Up iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shut Up iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2A0C7E0D6803C800F3E000A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2A0C7E0D6803C800F3E000B /* Shut Up iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Shut Up iOS.entitlements"; sourceTree = "<group>"; };
+		E2A0C7E0D6803C800F3E000E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2A0C7E0D6803C800F3E0016 /* ShutUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShutUpApp.swift; path = "App (SwiftUI)/ShutUpApp.swift"; sourceTree = SOURCE_ROOT; };
+		E2A0C7E0D6803C800F3E0017 /* AppStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppStateModel.swift; path = "App (SwiftUI)/Models/AppStateModel.swift"; sourceTree = SOURCE_ROOT; };
+		E2A0C7E0D6803C800F3E0018 /* WhitelistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhitelistModel.swift; path = "App (SwiftUI)/Models/WhitelistModel.swift"; sourceTree = SOURCE_ROOT; };
+		E2A0C7E0D6803C800F3E0019 /* ErrorBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorBox.swift; path = "App (SwiftUI)/Models/ErrorBox.swift"; sourceTree = SOURCE_ROOT; };
+		E2A0C7E0D6803C800F3E001A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootView.swift; path = "App (SwiftUI)/Screens/RootView.swift"; sourceTree = SOURCE_ROOT; };
+		E2A0C7E0D6803C800F3E001C /* WhitelistScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhitelistScreen.swift; path = "App (SwiftUI)/Screens/WhitelistScreen.swift"; sourceTree = SOURCE_ROOT; };
+		E2A0C7E0D6803C800F3E001D /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutScreen.swift; path = "App (SwiftUI)/Screens/AboutScreen.swift"; sourceTree = SOURCE_ROOT; };
+		E2A0C7E0D6803C800F3E001E /* BackgroundRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BackgroundRefresh.swift; path = "App (SwiftUI)/Models/BackgroundRefresh.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +283,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				11E58203231DB82E00910010 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2A0C1E0D6803C800F3E0004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2A0C7E0D6803C800F3E0004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,9 +406,12 @@
 				11E581CF231DB6FC00910010 /* Shut Up */,
 				11E581E7231DB6FD00910010 /* Shut Up Helper */,
 				11E58204231DB82E00910010 /* Shut Up Core */,
+				E2A0C1E0D6803C800F3E0009 /* Shut Up Core iOS */,
+				E2A0C7E0D6803C800F3E0009 /* Shut Up iOS */,
 				112A8125248C78D20077AA4B /* Debug Tools */,
 				11E581E4231DB6FD00910010 /* Frameworks */,
 				11E581CE231DB6FC00910010 /* Products */,
+				E20F4412306002A6000DC147 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -333,6 +421,8 @@
 				11E581CD231DB6FC00910010 /* Shut Up.app */,
 				11E581E0231DB6FD00910010 /* Shut Up Helper.appex */,
 				11E58202231DB82E00910010 /* Shut Up Core.appex */,
+				E2A0C1E0D6803C800F3E0001 /* Shut Up Core iOS.appex */,
+				E2A0C7E0D6803C800F3E0001 /* Shut Up iOS.app */,
 				112A8124248C78D20077AA4B /* Shut Up Debug Tools.app */,
 			);
 			name = Products;
@@ -402,6 +492,40 @@
 				11E58218231DFDA100910010 /* turn-off.pdf */,
 			);
 			path = toolbar;
+			sourceTree = "<group>";
+		};
+		E20F4412306002A6000DC147 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				E2A0C7E0D6803C800F3E0017 /* AppStateModel.swift */,
+				E2A0C7E0D6803C800F3E0018 /* WhitelistModel.swift */,
+				E2A0C7E0D6803C800F3E0019 /* ErrorBox.swift */,
+				E2A0C7E0D6803C800F3E001A /* RootView.swift */,
+				E2A0C7E0D6803C800F3E001C /* WhitelistScreen.swift */,
+				E2A0C7E0D6803C800F3E001D /* AboutScreen.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		E2A0C1E0D6803C800F3E0009 /* Shut Up Core iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E2A0C1E0D6803C800F3E000A /* Info.plist */,
+				E2A0C1E0D6803C800F3E000B /* Shut Up Core iOS.entitlements */,
+			);
+			path = "Shut Up Core iOS";
+			sourceTree = "<group>";
+		};
+		E2A0C7E0D6803C800F3E0009 /* Shut Up iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E2A0C7E0D6803C800F3E0016 /* ShutUpApp.swift */,
+				E2A0C7E0D6803C800F3E001E /* BackgroundRefresh.swift */,
+				E2A0C7E0D6803C800F3E000E /* Assets.xcassets */,
+				E2A0C7E0D6803C800F3E000A /* Info.plist */,
+				E2A0C7E0D6803C800F3E000B /* Shut Up iOS.entitlements */,
+			);
+			path = "Shut Up iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,6 +606,44 @@
 			productReference = 11E58202231DB82E00910010 /* Shut Up Core.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		E2A0C1E0D6803C800F3E0002 /* Shut Up Core iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2A0C1E0D6803C800F3E0006 /* Build configuration list for PBXNativeTarget "Shut Up Core iOS" */;
+			buildPhases = (
+				E2A0C1E0D6803C800F3E0003 /* Sources */,
+				E2A0C1E0D6803C800F3E0004 /* Frameworks */,
+				E2A0C1E0D6803C800F3E0005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2A0C1E0D6803C800F3E000D /* PBXTargetDependency */,
+			);
+			name = "Shut Up Core iOS";
+			productName = "Shut Up Core iOS";
+			productReference = E2A0C1E0D6803C800F3E0001 /* Shut Up Core iOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		E2A0C7E0D6803C800F3E0002 /* Shut Up iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2A0C7E0D6803C800F3E0006 /* Build configuration list for PBXNativeTarget "Shut Up iOS" */;
+			buildPhases = (
+				E2A0C7E0D6803C800F3E0003 /* Sources */,
+				E2A0C7E0D6803C800F3E0004 /* Frameworks */,
+				E2A0C7E0D6803C800F3E0005 /* Resources */,
+				E2A0C7E0D6803C800F3E000F /* Embed iOS Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2A0C7E0D6803C800F3E0015 /* PBXTargetDependency */,
+				E2A0C7E0D6803C800F3E000D /* PBXTargetDependency */,
+			);
+			name = "Shut Up iOS";
+			productName = "Shut Up iOS";
+			productReference = E2A0C7E0D6803C800F3E0001 /* Shut Up iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -560,6 +722,8 @@
 				11E581CC231DB6FC00910010 /* Shut Up */,
 				11E581DF231DB6FD00910010 /* Shut Up Helper */,
 				11E58201231DB82E00910010 /* Shut Up Core */,
+				E2A0C1E0D6803C800F3E0002 /* Shut Up Core iOS */,
+				E2A0C7E0D6803C800F3E0002 /* Shut Up iOS */,
 				112A8123248C78D20077AA4B /* Shut Up Debug Tools */,
 			);
 		};
@@ -612,6 +776,28 @@
 				111C4DE2234A47180034054C /* domain-whitelist.json in Resources */,
 				E216EE1D2D68044800F3EA78 /* Localizable.xcstrings in Resources */,
 				1123F691272513940026E2A7 /* InternetAccessPolicy.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2A0C1E0D6803C800F3E0005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2A0C3E0D6803C800F3E0001 /* shutup.css in Resources */,
+				E2A0C3E0D6803C800F3E0004 /* InfoPlist.xcstrings in Resources */,
+				E2A0C3E0D6803C800F3E0002 /* domain-whitelist.json in Resources */,
+				E2A0C3E0D6803C800F3E0003 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2A0C7E0D6803C800F3E0005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2A0C9E0D6803C800F3E0001 /* Assets.xcassets in Resources */,
+				E2A0C9E0D6803C800F3E0002 /* Localizable.xcstrings in Resources */,
+				E2A0CAE0D6803C800F3E0001 /* shutup.css in Resources */,
+				E2A0CAE0D6803C800F3E0002 /* domain-whitelist.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +886,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E2A0C1E0D6803C800F3E0003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2A0C2E0D6803C800F3E0001 /* Info.swift in Sources */,
+				E2A0C2E0D6803C800F3E0002 /* ContentBlockerRequestHandler.swift in Sources */,
+				E2A0C2E0D6803C800F3E0005 /* Preferences.swift in Sources */,
+				E2A0C2E0D6803C800F3E0006 /* Crypto.swift in Sources */,
+				E2A0C2E0D6803C800F3E0007 /* EncryptedFile.swift in Sources */,
+				E2A0C2E0D6803C800F3E0003 /* ContentBlockerRule.swift in Sources */,
+				E2A0C2E0D6803C800F3E0008 /* Whitelist.swift in Sources */,
+				E2A0C2E0D6803C800F3E0004 /* ContentBlockerProvider.swift in Sources */,
+				E2A0C2E0D6803C800F3E0009 /* LockFile.swift in Sources */,
+				E2A0C2E0D6803C800F3E000A /* Setup.swift in Sources */,
+				E2A0C2E0D6803C800F3E000B /* MessagingError.swift in Sources */,
+				E2A0C2E0D6803C800F3E000C /* Stylesheet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2A0C7E0D6803C800F3E0003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2A0C8E0D6803C800F3E0009 /* Info.swift in Sources */,
+				E2A0C8E0D6803C800F3E0012 /* BackgroundRefresh.swift in Sources */,
+				E2A0C8E0D6803C800F3E0001 /* ShutUpApp.swift in Sources */,
+				E2A0C8E0D6803C800F3E0002 /* AppStateModel.swift in Sources */,
+				E2A0C8E0D6803C800F3E0003 /* WhitelistModel.swift in Sources */,
+				E2A0C8E0D6803C800F3E0004 /* ErrorBox.swift in Sources */,
+				E2A0C8E0D6803C800F3E0005 /* RootView.swift in Sources */,
+				E2A0C8E0D6803C800F3E0007 /* WhitelistScreen.swift in Sources */,
+				E2A0C8E0D6803C800F3E0008 /* AboutScreen.swift in Sources */,
+				E2A0C8E0D6803C800F3E000A /* Preferences.swift in Sources */,
+				E2A0C8E0D6803C800F3E000D /* Crypto.swift in Sources */,
+				E2A0C8E0D6803C800F3E000E /* EncryptedFile.swift in Sources */,
+				E2A0C8E0D6803C800F3E000C /* Whitelist.swift in Sources */,
+				E2A0C8E0D6803C800F3E0010 /* LockFile.swift in Sources */,
+				E2A0C8E0D6803C800F3E0011 /* Setup.swift in Sources */,
+				E2A0C8E0D6803C800F3E000F /* MessagingError.swift in Sources */,
+				E2A0C8E0D6803C800F3E000B /* Stylesheet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -712,6 +941,19 @@
 			isa = PBXTargetDependency;
 			target = 11E58201231DB82E00910010 /* Shut Up Core */;
 			targetProxy = 11E5820B231DB82E00910010 /* PBXContainerItemProxy */;
+		};
+		E2A0C1E0D6803C800F3E000D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E2A0C1E0D6803C800F3E000C /* SwiftLintBuildToolPlugin */;
+		};
+		E2A0C7E0D6803C800F3E000D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E2A0C7E0D6803C800F3E000C /* SwiftLintBuildToolPlugin */;
+		};
+		E2A0C7E0D6803C800F3E0015 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2A0C1E0D6803C800F3E0002 /* Shut Up Core iOS */;
+			targetProxy = E2A0C7E0D6803C800F3E0012 /* PBXContainerItemProxy */;
 		};
 		E2E7FAA32D86ECAF0061FD22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -749,9 +991,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Debug Tools/Debug_Tools.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TMM5P68287;
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -773,9 +1016,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Debug Tools/Debug_Tools.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TMM5P68287;
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -828,7 +1072,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -898,7 +1142,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -931,6 +1175,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Shut Up Helper/Shut Up Helper.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
 				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TMM5P68287;
@@ -957,6 +1202,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Shut Up Helper/Shut Up Helper.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
 				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TMM5P68287;
@@ -985,6 +1231,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
 				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TMM5P68287;
@@ -1011,6 +1258,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
 				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TMM5P68287;
@@ -1035,6 +1283,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Shut Up Core/Shut Up Core.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
 				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TMM5P68287;
@@ -1061,6 +1310,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Shut Up Core/Shut Up Core.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
 				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TMM5P68287;
@@ -1078,6 +1328,124 @@
 				REGISTER_APP_GROUPS = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E2A0C1E0D6803C800F3E0007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Shut Up Core iOS/Shut Up Core iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
+				CURRENT_PROJECT_VERSION = 12;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = TMM5P68287;
+				INFOPLIST_FILE = "$(SRCROOT)/Shut Up Core iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickyromero.shutup.blocker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E2A0C1E0D6803C800F3E0008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Shut Up Core iOS/Shut Up Core iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
+				CURRENT_PROJECT_VERSION = 12;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = TMM5P68287;
+				INFOPLIST_FILE = "$(SRCROOT)/Shut Up Core iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickyromero.shutup.blocker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E2A0C7E0D6803C800F3E0007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Shut Up iOS/Shut Up iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
+				CURRENT_PROJECT_VERSION = 12;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = TMM5P68287;
+				INFOPLIST_FILE = "$(SRCROOT)/Shut Up iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickyromero.shutup;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E2A0C7E0D6803C800F3E0008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Shut Up iOS/Shut Up iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CONTAINING_APP_BUNDLE_ID = com.rickyromero.shutup;
+				CURRENT_PROJECT_VERSION = 12;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = TMM5P68287;
+				INFOPLIST_FILE = "$(SRCROOT)/Shut Up iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickyromero.shutup;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1129,6 +1497,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		E2A0C1E0D6803C800F3E0006 /* Build configuration list for PBXNativeTarget "Shut Up Core iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2A0C1E0D6803C800F3E0007 /* Debug */,
+				E2A0C1E0D6803C800F3E0008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2A0C7E0D6803C800F3E0006 /* Build configuration list for PBXNativeTarget "Shut Up iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2A0C7E0D6803C800F3E0007 /* Debug */,
+				E2A0C7E0D6803C800F3E0008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1143,6 +1529,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E2A0C1E0D6803C800F3E000C /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2E7FAA12D86ECA10061FD22 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		E2A0C7E0D6803C800F3E000C /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2E7FAA12D86ECA10061FD22 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
 		E2E7FAA22D86ECAF0061FD22 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E2E7FAA12D86ECA10061FD22 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;

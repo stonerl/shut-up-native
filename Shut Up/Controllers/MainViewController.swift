@@ -15,7 +15,6 @@ class MainViewController: NSViewController {
     @IBOutlet var showContextMenuCheckbox: NSButton!
     @IBOutlet var whitelistView: NSTableView!
     @IBOutlet var whitelistScrollView: NSScrollView!
-    @IBOutlet var whitelistAddField: NSTextField!
     @IBOutlet var lastCssUpdateLabel: NSTextField!
     @IBOutlet var updatingIndicator: NSStackView!
     @IBOutlet var updatingSpinner: NSProgressIndicator!
@@ -29,7 +28,10 @@ class MainViewController: NSViewController {
     var lastHelperUiUpdate = Date(timeIntervalSince1970: 0)
     var cssLabelUpdateTimer: Timer?
 
-    var onboardingActive: Bool { view.window?.sheets.count ?? 0 > 0 }
+    var onboardingActive: Bool {
+        view.window?.sheets.count ?? 0 > 0
+    }
+
     var setupAssistantWarranted: Bool {
         let prefs = Preferences.main
         let prefsRequireAssistant = (prefs.setupRun && prefs.needsSetupAssistant)
@@ -44,7 +46,6 @@ class MainViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpSymbols()
 
         Preferences.main.delegate = self
         whitelistView.delegate = self

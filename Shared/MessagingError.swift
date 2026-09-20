@@ -12,12 +12,7 @@ enum UnknownError: Error {
     case unknown
 }
 
-enum LockError: Error {
-    case timedOut
-}
-
 enum CryptoError: Error {
-    case accessingKeychain
     case removingInvalidKeys
     case generatingKeys
     case fetchingKeys
@@ -40,7 +35,7 @@ enum MiscError: Error {
     case unexpectedNetworkResponse
 }
 
-enum RecoveryOption: String, CaseIterable, CustomStringConvertible {
+enum RecoveryOption: String, CustomStringConvertible {
     case okay
     case quit
     case reset
@@ -74,7 +69,7 @@ class MessagingError: NSError, @unchecked Sendable {
 
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
-        // TODO: Provide a proper implementation of init(coder:) if this class is ever loaded from a storyboard.
+        // Not instantiated from a storyboard; decoding is unsupported.
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -103,16 +98,20 @@ class MessagingError: NSError, @unchecked Sendable {
         switch cause {
         case let crypto as CryptoError:
             switch crypto {
-            case .accessingKeychain:
-                title = String(localized: "Keychain locked or unavailable", comment: "CryptoError.accessingKeychain – title")
-                info = String(localized: "Shut Up requires keychain privileges to secure its data. Unlock your keychain to proceed.", comment: "CryptoError.accessingKeychain – info")
-                options = [.quit, .tryAgain]
             case .removingInvalidKeys:
                 title = String(localized: "Failed to remove invalid keys", comment: "CryptoError.removingInvalidKeys – title")
-                info = String(localized: "If the issue persists, try restarting your Mac.", comment: "CryptoError.removingInvalidKeys – info")
+                #if os(macOS)
+                    info = String(localized: "If the issue persists, try restarting your Mac.", comment: "CryptoError.removingInvalidKeys – info")
+                #else
+                    info = String(localized: "If the issue persists, restart your iPhone or iPad.", comment: "CryptoError.removingInvalidKeys – info")
+                #endif
             case .generatingKeys:
                 title = String(localized: "Failed to generate a required key", comment: "CryptoError.generatingKeys – title")
-                info = String(localized: "If the issue persists, try restarting your Mac.", comment: "CryptoError.generatingKeys – info")
+                #if os(macOS)
+                    info = String(localized: "If the issue persists, try restarting your Mac.", comment: "CryptoError.generatingKeys – info")
+                #else
+                    info = String(localized: "If the issue persists, restart your iPhone or iPad.", comment: "CryptoError.generatingKeys – info")
+                #endif
             case .fetchingKeys:
                 title = String(localized: "Encryption keys missing or damaged", comment: "CryptoError.fetchingKeys – title")
                 info = String(localized: "Shut Up failed to decrypt some required data. You can fix this by resetting Shut Up, but your allowlist may be lost.", comment: "CryptoError.fetchingKeys – info")
@@ -121,13 +120,6 @@ class MessagingError: NSError, @unchecked Sendable {
                 title = String(localized: "Stylesheet or allowlist damaged", comment: "CryptoError.transformingData – title")
                 info = String(localized: "Shut Up failed to decrypt some required data. You can fix this by resetting Shut Up, but your allowlist may be lost.", comment: "CryptoError.transformingData – info")
                 options = [.quit, .reset]
-            }
-        case let lock as LockError:
-            switch lock {
-            case .timedOut:
-                title = String(localized: "Internal error occurred", comment: "LockError.timedOut – title")
-                info = String(localized: "Shut Up encountered a problem and cannot recover. Please quit and restart Shut Up.", comment: "LockError.timedOut – info")
-                options = [.quit]
             }
         case let file as FileError:
             switch file {
@@ -146,7 +138,11 @@ class MessagingError: NSError, @unchecked Sendable {
             switch browser {
             case .providingBlockRules:
                 title = String(localized: "Safari failed to read Shut Up’s content-blocking rules", comment: "BrowserError.providingBlockRules – title")
-                info = String(localized: "Shut Up sent Safari new content-blocking rules, but it failed. Try restarting Safari. If the issue persists, try restarting your Mac.", comment: "BrowserError.providingBlockRules – info")
+                #if os(macOS)
+                    info = String(localized: "Shut Up sent Safari new content-blocking rules, but it failed. Try restarting Safari. If the issue persists, try restarting your Mac.", comment: "BrowserError.providingBlockRules – info")
+                #else
+                    info = String(localized: "Shut Up sent Safari new content-blocking rules, but it failed. Try restarting Safari. If the issue persists, restart your iPhone or iPad.", comment: "BrowserError.providingBlockRules – info")
+                #endif
             case .showingSafariPreferences:
                 title = String(localized: "Safari failed to open its settings", comment: "BrowserError.showingSafariPreferences – title")
                 info = String(localized: "Shut Up asked Safari to open its settings window, but it failed. Try opening Safari’s settings manually, then go to the “Extensions” section.", comment: "BrowserError.showingSafariPreferences – info")
