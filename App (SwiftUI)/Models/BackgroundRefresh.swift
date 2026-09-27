@@ -65,7 +65,9 @@ enum BackgroundRefresh {
 
         let operation = BlockOperation {
             Stylesheet.main.update { error in
+                // Completion arrives on the main queue (Stylesheet contract).
                 complete(error == nil)
+                AppStateModel.shared.refresh()
             }
         }
 

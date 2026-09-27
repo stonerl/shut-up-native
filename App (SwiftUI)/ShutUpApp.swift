@@ -17,10 +17,11 @@ struct ShutUpApp: App {
             RootView()
                 .onAppear {
                     Setup.main.bootstrap {
-                        // Match the mac app's launch behavior: check for a
-                        // stylesheet update when the app comes to the
-                        // foreground (2-day staleness deadline applies).
-                        Stylesheet.main.update(completionHandler: nil)
+                        // Launch-time check, mac parity; callback is
+                        // guaranteed even on early bails.
+                        Stylesheet.main.update { _ in
+                            AppStateModel.shared.refresh()
+                        }
                     }
                     AppStateModel.shared.refresh()
                 }

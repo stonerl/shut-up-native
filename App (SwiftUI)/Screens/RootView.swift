@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject private var errorBox: ErrorBox
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         TabView {
@@ -21,6 +22,12 @@ struct RootView: View {
                 .tabItem {
                     Label(String(localized: "About"), systemImage: "info.circle")
                 }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            // Cross-process pref changes aren't observable in-process.
+            if phase == .active {
+                AppStateModel.shared.refresh()
+            }
         }
         .alert(
             Text(errorTitle),
