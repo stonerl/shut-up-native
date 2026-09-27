@@ -49,7 +49,6 @@ final class LockFile {
         lockDate == claimedDate && lockDate != nil
     }
 
-    private var timerActive = false
     private var lockExpired: Bool {
         let negativeExpiry = Double(expiry) * -1
         let age = lockDate?.timeIntervalSinceNow
@@ -58,8 +57,10 @@ final class LockFile {
     }
 
     func claim() {
-        guard !timerActive else { return }
-        timerActive = true
+        // Nested claims (read() falling back to write() while it still
+        // holds the lock) must no-op instead of re-entering the poll
+        // loop – attempt() can't succeed while we hold the lock file.
+        guard !claimedByUs else { return }
 
         // Polls on the calling thread; blocks until the lock is claimed or expires.
         while true {
@@ -74,9 +75,5 @@ final class LockFile {
                 usleep(1000 * 1000 / 2)
             }
         }
-
-        // The guard above only prevents nested/reentrant claims. Clear the
-        // flag so independent claims later in the process life can proceed.
-        timerActive = false
     }
 }
