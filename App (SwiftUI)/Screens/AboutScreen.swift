@@ -48,7 +48,9 @@ struct AboutScreen: View {
                 }
 
                 Section {
-                    stylesheetRow
+                    TimelineView(.periodic(from: .now, by: 1)) { _ in
+                        stylesheetRow
+                    }
                 } header: {
                     Text("Stylesheet")
                 }
@@ -65,6 +67,15 @@ struct AboutScreen: View {
             .navigationTitle(String(localized: "About"))
             .onAppear {
                 appState.refresh()
+            }
+            .task {
+                // Mac heals its label with a 1 s timer; mirror that while
+                // this screen is visible so late-landing updates and
+                // cross-process pref writes surface without a restart.
+                while !Task.isCancelled {
+                    try? await Task.sleep(nanoseconds: 1_000_000_000)
+                    appState.refresh()
+                }
             }
         }
     }
